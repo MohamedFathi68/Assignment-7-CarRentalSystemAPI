@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { user } from "../../database/dbConnection.js";
 
 const userRegister = async (req, res) => {
@@ -10,17 +11,23 @@ const userLogin = (req, res) => {
   res.status(202).json({ message: "Logedin succesfully, Welcome" , token});
 };
 
-const getUserById = (req, res) => {
-  res.status(200).json({ message: "success" });
+const getUserById = async (req, res) => {
+  let _user = await user.findOne({_id:  new ObjectId(req.params.id)}, {projection: {password: 0}});
+  res.status(200).json({ message: "success" , _user });
 };
-const getAllUsers = (req, res) => {
-  res.status(200).json({ message: "success" });
+
+const getAllUsers = async (req, res) => {
+  let users = await user.find({}, {projection: {password: 0}}).toArray();
+  res.status(200).json({ message: "success", users });
 };
-const updateUser = (req, res) => {
-  res.status(200).json({ message: "success" });
+
+const updateUser = async (req, res) => {
+  let data = await user.updateOne({_id:  new ObjectId(req.params.id)}, {$set: req.body});
+  res.status(200).json({ message: "success" , data});
 };
-const deleteUser = (req, res) => {
-  res.status(200).json({ message: "success" });
+const deleteUser = async (req, res) => {
+  let data = await user.deleteOne({_id:  new ObjectId(req.params.id)});
+  res.status(200).json({ message: "success" , data });
 };
 
 export {
