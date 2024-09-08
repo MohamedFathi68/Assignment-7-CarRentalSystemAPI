@@ -9,7 +9,17 @@ client
 
 const db = client.db('CarRentalSystem');
 const car = db.collection("car");
-const rental = db.collection("rental");
+const rental = db.collection("rental").aggregate([
+  {
+    $lookup: {
+      from: "user",
+      localField: "userId",
+      foreignField: "_id",
+      as: "userData"
+    }
+  }
+]);
+
 const user = db.collection("user");
 
 export { car, rental, user };
