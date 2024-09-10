@@ -16,7 +16,7 @@ import {isRented} from "../../middleware/checkCar/isRented.middleware.js";
 // Define routes
 
 rentalRouter.post("/rentals/:id/:carId", verifyToken , authorized, isRented , creatRental);
-rentalRouter.put("/rentals/:id", verifyToken , authorized, isRented , updateRental);
+rentalRouter.put("/rentals/:id", verifyToken , authorized , updateRental);
 rentalRouter.delete("/rentals/:id", verifyToken , authorized, deleteRental);
 rentalRouter.get("/rentals", getAllRental);
 rentalRouter.get("/rentals/:id", getRentalById);

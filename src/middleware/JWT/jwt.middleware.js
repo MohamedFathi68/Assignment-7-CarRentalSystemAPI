@@ -26,7 +26,7 @@ export const verifyToken = async (req, res, next) => {
 }
 
 export const authorized = (req, res, next) => {  
-  if (req.userId.userId === req.params.id) {
+  if (req.userId.userId === req.params.id || req.body.userId) {
     next();
   } else {
     return res.status(401).json({ message: "You are not authorized" });
