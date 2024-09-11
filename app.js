@@ -1,6 +1,6 @@
 import express from 'express'
 const app = express()
-const port =  3000
+const port =  8080
 import cors from "cors";
 import bootstrap from './src/modules/bootstrap.routes.js';
 import { cleanUpExpiredRentals } from './src/middleware/cleanUpExpiredRentals/cleanUpExpiredRentals.middleware.js';
