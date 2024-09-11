@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient("mongodb://localhost:27017");
+const client = new MongoClient("mongodb+srv://mohamedfathi68:POFk6zOhciyHUz5d@cluster0.uhqg8fv.mongodb.net/");
+
 
 client
   .connect()
